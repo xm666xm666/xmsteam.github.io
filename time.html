@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>世界时间展示</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333333;
+    }
+
+    .city-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .city {
+      text-align: center;
+      margin: 0 20px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .city-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .city-time {
+      font-size: 48px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    .clock-icon {
+      font-size: 60px;
+      color: #333333;
+      animation: rotate 1s infinite linear;
+    }
+    .home-link {
+            text-decoration: none;
+            font-size: 25px;
+            color: #fff;
+            background-color: #007bff;
+            padding: 8px 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .home-link:hover {
+            background-color: #0056b3;
+        }
+        
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>世界时间展示</h1>
+
+  <div class="city-container">
+    <div class="city">
+      <div class="city-name">北京</div>
+      <div class="city-time" id="beijing-time"></div>
+      <i class="clock-icon">⏰</i>
+    </div>
+
+    <div class="city">
+      <div class="city-name">华盛顿</div>
+      <div class="city-time" id="washington-time"></div>
+      <i class="clock-icon">⏰</i>
+    </div>
+
+    <div class="city">
+      <div class="city-name">伦敦</div>
+      <div class="city-time" id="london-time"></div>
+      <i class="clock-icon">⏰</i>
+    </div>
+
+    <div class="city">
+      <div class="city-name">巴黎</div>
+      <div class="city-time" id="paris-time"></div>
+      <i class="clock-icon">⏰</i>
+    </div>
+  </div>
+
+  <script>
+    function updateTimes() {
+      var beijingTime = new Date().toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" });
+      document.getElementById("beijing-time").textContent = beijingTime;
+
+      var washingtonTime = new Date().toLocaleString("zh-CN", { timeZone: "America/New_York" });
+      document.getElementById("washington-time").textContent = washingtonTime;
+
+      var londonTime = new Date().toLocaleString("zh-CN", { timeZone: "Europe/London" });
+      document.getElementById("london-time").textContent = londonTime;
+
+      var parisTime = new Date().toLocaleString("zh-CN", { timeZone: "Europe/Paris" });
+      document.getElementById("paris-time").textContent = parisTime;
+    }
+
+    setInterval(updateTimes, 1000);
+  </script>
+  <a href="./shouye.html" class="home-link">首页</a>
+</body>
+</html>
