@@ -10,13 +10,48 @@
       text-align: center;
       background-color: #f2f2f2;
       margin-top: 20vh;
+      text-align: center;
     }
 
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
+      color: #333;
     }
 
+    p {
+            font-size: 18px;
+            color: #666;
+            margin-top: 20px;
+        }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    .name-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+    }
+    .name-container span {
+            font-size: 24px;
+            color: #333;
+            margin-right: 10px;
+    }
     .name {
       font-size: 3rem;
       color: #333;
@@ -54,22 +89,29 @@
   </style>
 </head>
 <body>
-  <h1>随机英文名称生成器</h1>
-  <div class="name" id="nameDisplay"></div>
-  <button class="generate-button" onclick="generateName()">生成名称</button>
+    <h1>随机生成英文名</h1>
+    <div class="name-container">
+        <span id="firstName"></span><span id="lastName"></span>
+    </div>
 
-  <script>
-    const names = [
-      "Oliver", "Emma", "Noah", "Ava", "William", "Sophia", "James", "Isabella", "Benjamin", "Mia", "Lucas", "Charlotte", "Henry", "Amelia", "Alexander", "Harper", "Daniel", "Evelyn", "Matthew", "Abigail"
-      // 可以根据需要添加更多的英文名字
-    ];
+    <button onclick="generateRandomName()">重新获取</button>
 
-    function generateName() {
-      const nameDisplay = document.getElementById("nameDisplay");
-      const randomIndex = Math.floor(Math.random() * names.length);
-      const randomName = names[randomIndex];
-      nameDisplay.textContent = randomName;
-    }
+    <script>
+        var firstNames = ["John", "Emma", "Michael", "Olivia"];
+        var lastNames = ["Smith", "Johnson", "Williams", "Brown"];
+
+        function generateRandomName() {
+            var firstNameIndex = Math.floor(Math.random() * firstNames.length);
+            var lastNameIndex = Math.floor(Math.random() * lastNames.length);
+
+            var firstName = firstNames[firstNameIndex];
+            var lastName = lastNames[lastNameIndex];
+
+            document.getElementById("firstName").textContent = firstName;
+            document.getElementById("lastName").textContent = lastName;
+        }
+                // 初始化页面加载时生成一个随机英文名
+                generateRandomName();
   </script>
   <a href="./shouye.html" class="home-link">首页</a>
 </body>
