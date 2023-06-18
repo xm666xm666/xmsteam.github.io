@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>多种进制转换器</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+      margin-top: 20vh;
+      text-align: center;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    label {
+      font-weight: bold;
+    }
+    
+    input[type="text"] {
+      width: 200px;
+    }
+    
+    button {
+      margin-top: 10px;
+    }
+    
+    #output {
+      margin-top: 20px;
+    }
+    .home-link {
+            text-decoration: none;
+            font-size: 25px;
+            color: #fff;
+            background-color: #007bff;
+            padding: 8px 10px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .home-link:hover {
+            background-color: #0056b3;
+        }
+  </style>
+</head>
+<body>
+  <h1>多种进制转换器</h1>
+  <h2>不支持浮点型</h2>
+  <label>二进制：</label>
+  <input type="text" id="binaryInput" />
+  <button onclick="convertBinary()">转换</button>
+  
+  <label>八进制：</label>
+  <input type="text" id="octalInput" />
+  <button onclick="convertOctal()">转换</button>
+  
+  <label>十进制：</label>
+  <input type="text" id="decimalInput" />
+  <button onclick="convertDecimal()">转换</button>
+  
+  <label>十六进制：</label>
+  <input type="text" id="hexadecimalInput" />
+  <button onclick="convertHexadecimal()">转换</button>
+  
+  <label>三十二进制：</label>
+  <input type="text" id="base32Input" />
+  <button onclick="convertBase32()">转换</button>
+  
+  <div id="output">
+    <h2>转换结果:</h2>
+    <p id="binaryResult"></p>
+    <p id="octalResult"></p>
+    <p id="decimalResult"></p>
+    <p id="hexadecimalResult"></p>
+    <p id="base32Result"></p>
+    <h2>转换为十进制输出原码、反码、补码</h2>
+    <h2>以计算机字长为8计算:</h2>
+    <p id="decimalSign"></p>
+    <p id="decimalMagnitude"></p>
+    <p id="decimalOnesComplement"></p>
+    <p id="decimalTwosComplement"></p>
+  </div>
+  
+  <script>
+    function convertBinary() {
+      var binaryInput = document.getElementById("binaryInput").value;
+      var decimal = parseInt(binaryInput, 2);
+      
+      document.getElementById("binaryResult").textContent = "十进制：" + decimal;
+      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
+      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
+      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
+      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
+      
+      showDecimal(decimal);
+    }
+    
+    function convertOctal() {
+      var octalInput = document.getElementById("octalInput").value;
+      var decimal = parseInt(octalInput, 8);
+      
+      document.getElementById("binaryResult").textContent = "二进制：" + decimal.toString(2);
+      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
+      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
+      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
+      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
+      
+      showDecimal(decimal);
+    }
+    
+    function convertDecimal() {
+      var decimalInput = document.getElementById("decimalInput").value;
+      var decimal = parseInt(decimalInput);
+      
+      document.getElementById("binaryResult").textContent = "二进制：" + decimal.toString(2);
+      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
+      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
+      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
+      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
+      
+      showDecimal(decimal);
+    }
+    
+    function convertHexadecimal() {
+      var hexadecimalInput = document.getElementById("hexadecimalInput").value;
+      var decimal = parseInt(hexadecimalInput, 16);
+      
+      document.getElementById("binaryResult").textContent = "二进制：" + decimal.toString(2);
+      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
+      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
+      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
+      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
+      
+      showDecimal(decimal);
+    }
+    
+    function convertBase32() {
+      var base32Input = document.getElementById("base32Input").value;
+      var decimal = parseInt(base32Input, 32);
+      
+      document.getElementById("binaryResult").textContent = "二进制：" + decimal.toString(2);
+      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
+      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
+      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
+      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
+      
+      showDecimal(decimal);
+    }
+    
+    function showDecimal(decimal) {
+      var binaryString = decimalToBinary(decimal);
+      var sign = binaryString.charAt(0) === '1' ? "负数" : "正数";
+      var magnitude = binaryString.slice(1);
+
+      var onesComplement = computeOnesComplement(magnitude);
+      var twosComplement = computeTwosComplement(magnitude);
+
+      var originalMagnitude = sign === "负数" ? twosComplement : magnitude;
+      var onesComplementMagnitude = sign === "负数" ? computeOnesComplement(twosComplement) : computeOnesComplement(magnitude);
+      var twosComplementMagnitude = sign === "负数" ? twosComplement : computeTwosComplement(magnitude);
+
+      document.getElementById("decimalSign").textContent = "符号位：" + sign;
+      document.getElementById("decimalMagnitude").textContent = "大小：" + magnitude;
+      document.getElementById("decimalOnesComplement").textContent = "原码：" + originalMagnitude;
+      document.getElementById("decimalTwosComplement").textContent = "反码：" + onesComplementMagnitude + "，补码：" + twosComplementMagnitude;
+    }
+
+    function decimalToBinary(decimal) {
+      var binaryString = (decimal >>> 0).toString(2); // 使用 ">>>" 转换为无符号数的二进制字符串
+      while (binaryString.length < 8) {
+        binaryString = "0" + binaryString; // 补齐到8位
+      }
+      return binaryString;
+    }
+
+    function computeOnesComplement(magnitude) {
+      var onesComplement = "";
+      
+      for (var i = 0; i < magnitude.length; i++) {
+        onesComplement += magnitude.charAt(i) === '0' ? '1' : '0';
+      }
+      
+      return onesComplement;
+    }
+    
+    function computeTwosComplement(magnitude) {
+      var onesComplement = computeOnesComplement(magnitude);
+      var twosComplement = addBinary(onesComplement, "1");
+      
+      return twosComplement;
+    }
+    
+    function addBinary(a, b) {
+      var sum = "";
+      var carry = 0;
+      var i = a.length - 1;
+      var j = b.length - 1;
+      
+      while (i >= 0 || j >= 0 || carry > 0) {
+        var bitA = i >= 0 ? parseInt(a.charAt(i)) : 0;
+        var bitB = j >= 0 ? parseInt(b.charAt(j)) : 0;
+        var bitSum = bitA + bitB + carry;
+        
+        sum = (bitSum % 2) + sum;
+        carry = Math.floor(bitSum / 2);
+        
+        i--;
+        j--;
+      }
+      
+      return sum;
+    }
+  </script>
+    <a href="./shouye.html" class="home-link">首页</a>
+    <a href="https://www.xm666.eu.org" class="home-link">XM博客</a>
+</body>
+</html>
