@@ -220,8 +220,8 @@
       document.getElementById("system-time").textContent = timeString;
     }
 
-    // 每秒钟更新一次时间
-    setInterval(updateTime, 1000);
+    // 每毫秒钟更新一次时间
+    setInterval(updateTime, 1);
   function convert() {
   var number = document.getElementById('number').value.trim().toUpperCase();
   var fromBase = parseInt(document.getElementById('from').value);
