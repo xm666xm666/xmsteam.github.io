@@ -10,7 +10,7 @@
       font-family: Arial, sans-serif;
       text-align: center;
       background-color: #f2f2f2;
-      margin-top: 20vh;
+      margin-top: 10vh;
       text-align: center;
     }
 
@@ -84,9 +84,18 @@
             text-align: center;
             margin: 20px 0;
         }
-        .home-link:hover {
+    .home-link:hover {
             background-color: #0056b3;
-        }
+    }
+    
+    #system-time {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+      color: black; /* 修改为黑色 */
+      font-weight: bold; /* 加粗 */
+    } 
   </style>
 </head>
 <body>
@@ -95,10 +104,29 @@
     <div class="name-container">
         <span id="firstName"></span><span id="lastName"></span>
     </div>
-
+    <div id="system-time"></div>
     <button onclick="generateRandomName()">重新获取</button>
 
     <script>
+    function updateTime() {
+      var currentTime = new Date();
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+      var seconds = currentTime.getSeconds();
+
+      // 格式化时间
+      hours = ("0" + hours).slice(-2);
+      minutes = ("0" + minutes).slice(-2);
+      seconds = ("0" + seconds).slice(-2);
+
+      var timeString = hours + ":" + minutes + ":" + seconds;
+
+      // 更新时间
+      document.getElementById("system-time").textContent = timeString;
+    }
+
+    // 每秒钟更新一次时间
+    setInterval(updateTime, 1000);
         var firstNames = ["John", "Emma", "Michael", "Olivia", "James", "Mary", "Robert", "Sophia", "David", "Emily", "William", "Mia", "Joseph", "Emma", "Charles", "Ava", "Thomas", "Liam", "Daniel", "Oliver", "Matthew", "Isabella", "Johnathan", "Harper", "Andrew", "Evelyn", "Joshua", "Amelia", "Christopher", "Abigail"];
         var lastNames = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Miller", "Davis", "Garcia", "Rodriguez", "Wilson", "Martinez", "Anderson", "Taylor", "Thomas", "Hernandez", "Moore", "Martin", "Jackson", "Thompson", "White", "Lopez", "Lee", "Gonzalez", "Harris", "Clark", "Lewis", "Young", "Walker", "Hall", "King"];
 
@@ -114,6 +142,7 @@
         }
                 // 初始化页面加载时生成一个随机英文名
                 generateRandomName();
+
   </script>
     <a href="./shouye.html" class="home-link">首页</a>
     <a href="https://www.xm666.eu.org" class="home-link">XM博客</a>

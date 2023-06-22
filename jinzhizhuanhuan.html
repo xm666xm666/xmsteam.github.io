@@ -9,28 +9,78 @@
       font-family: Arial, sans-serif;
       text-align: center;
       background-color: #f2f2f2;
-      margin-top: 20vh;
-      text-align: center;
+      margin-top: 10vh;
     }
-    
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
     h1 {
       text-align: center;
     }
-    
+
     label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    select {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 20px;
       font-weight: bold;
     }
-    
-    input[type="text"] {
-      width: 200px;
-    }
-    
-    button {
+
+    .result-box {
+      border: 1px solid #ccc;
+      padding: 5px;
       margin-top: 10px;
+      display: flex;
+      align-items: center;
     }
-    
-    #output {
-      margin-top: 20px;
+
+    .result-box input[type="text"] {
+      flex: 1;
+      border: none;
+      background-color: transparent;
+      font-size: 16px;
+      padding: 5px;
+      outline: none;
+    }
+
+    .result-box button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .copy-btn {
+      margin-top: 10px;
     }
     .home-link {
             text-decoration: none;
@@ -43,182 +93,180 @@
             display: block;
             text-align: center;
             margin: 20px 0;
-        }
-        .home-link:hover {
-            background-color: #0056b3;
-        }
+    }
+    .home-link:hover {
+        background-color: #0056b3;
+    }
+    #system-time {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+      color: black; /* 修改为黑色 */
+      font-weight: bold; /* 加粗 */
+    } 
   </style>
 </head>
 <body>
-  <h1>多种进制转换器</h1>
-  <h2>不支持浮点型</h2>
-  <label>二进制：</label>
-  <input type="text" id="binaryInput" />
-  <button onclick="convertBinary()">转换</button>
-  
-  <label>八进制：</label>
-  <input type="text" id="octalInput" />
-  <button onclick="convertOctal()">转换</button>
-  
-  <label>十进制：</label>
-  <input type="text" id="decimalInput" />
-  <button onclick="convertDecimal()">转换</button>
-  
-  <label>十六进制：</label>
-  <input type="text" id="hexadecimalInput" />
-  <button onclick="convertHexadecimal()">转换</button>
-  
-  <label>三十二进制：</label>
-  <input type="text" id="base32Input" />
-  <button onclick="convertBase32()">转换</button>
-  
-  <div id="output">
-    <h2>转换结果:</h2>
-    <p id="binaryResult"></p>
-    <p id="octalResult"></p>
-    <p id="decimalResult"></p>
-    <p id="hexadecimalResult"></p>
-    <p id="base32Result"></p>
-    <h2>转换为十进制输出原码、反码、补码</h2>
-    <h3>请注意未满8位自行补齐并且注意符号位！</h3>
-    <h3>计算结果：</h3>
-    <p id="decimalSign"></p>
-    <p id="decimalMagnitude"></p>
-    <p id="decimalOnesComplement"></p>
-    <p id="decimalTwosComplement"></p>
+  <div class="container">
+    <h1>多种进制转换器</h1>
+    <h1>支持浮点型</h1>
+    <h2>版本v1.1</h2>
+    <label for="number">输入一个数字：</label>
+    <input type="number" id="number" step="any" placeholder="请输入数字" />
+    <label for="from">转换前进制：</label>
+    <select id="from">
+      <option value="2">二进制</option>
+      <option value="3">三进制</option>
+      <option value="4">四进制</option>
+      <option value="5">五进制</option>
+      <option value="6">六进制</option>
+      <option value="7">七进制</option>
+      <option value="8">八进制</option>
+      <option value="9">九进制</option>
+      <option value="10" selected>十进制</option>
+      <option value="11">十一进制</option>
+      <option value="12">十二进制</option>
+      <option value="13">十三进制</option>
+      <option value="14">十四进制</option>
+      <option value="15">十五进制</option>
+      <option value="16">十六进制</option>
+      <option value="17">十七进制</option>
+      <option value="18">十八进制</option>
+      <option value="19">十九进制</option>
+      <option value="20">二十进制</option>
+      <option value="21">二十一进制</option>
+      <option value="22">二十二进制</option>
+      <option value="23">二十三进制</option>
+      <option value="24">二十四进制</option>
+      <option value="25">二十五进制</option>
+      <option value="26">二十六进制</option>
+      <option value="27">二十七进制</option>
+      <option value="28">二十八进制</option>
+      <option value="29">二十九进制</option>
+      <option value="30">三十进制</option>
+      <option value="31">三十一进制</option>
+      <option value="32">三十二进制</option>
+      <option value="33">三十三进制</option>
+      <option value="34">三十四进制</option>
+      <option value="35">三十五进制</option>
+      <option value="36">三十六进制</option>
+    </select>
+    <label for="to">转换后进制：</label>
+    <select id="to">
+      <option value="2">二进制</option>
+      <option value="3">三进制</option>
+      <option value="4">四进制</option>
+      <option value="5">五进制</option>
+      <option value="6">六进制</option>
+      <option value="7">七进制</option>
+      <option value="8">八进制</option>
+      <option value="9">九进制</option>
+      <option value="10" selected>十进制</option>
+      <option value="11">十一进制</option>
+      <option value="12">十二进制</option>
+      <option value="13">十三进制</option>
+      <option value="14">十四进制</option>
+      <option value="15">十五进制</option>
+      <option value="16">十六进制</option>
+      <option value="17">十七进制</option>
+      <option value="18">十八进制</option>
+      <option value="19">十九进制</option>
+      <option value="20">二十进制</option>
+      <option value="21">二十一进制</option>
+      <option value="22">二十二进制</option>
+      <option value="23">二十三进制</option>
+      <option value="24">二十四进制</option>
+      <option value="25">二十五进制</option>
+      <option value="26">二十六进制</option>
+      <option value="27">二十七进制</option>
+      <option value="28">二十八进制</option>
+      <option value="29">二十九进制</option>
+      <option value="30">三十进制</option>
+      <option value="31">三十一进制</option>
+      <option value="32">三十二进制</option>
+      <option value="33">三十三进制</option>
+      <option value="34">三十四进制</option>
+      <option value="35">三十五进制</option>
+      <option value="36">三十六进制</option>
+    </select>
+    <button onclick="convert()">转换</button>
+    <div class="result" id="result">
+      转换结果:
+      <div class="result-box" id="result-box"></div>
+    </div>
+    <div id="system-time"></div>
   </div>
-  
+
   <script>
-    function convertBinary() {
-      var binaryInput = document.getElementById("binaryInput").value;
-      var decimal = parseInt(binaryInput, 2);
-      
-      document.getElementById("binaryResult").textContent = "十进制：" + decimal;
-      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
-      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
-      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
-      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
-      
-      showDecimal(decimal);
-    }
-    
-    function convertOctal() {
-      var octalInput = document.getElementById("octalInput").value;
-      var decimal = parseInt(octalInput, 8);
-      
-      document.getElementById("binaryResult").textContent = "二进制：" + decimal.toString(2);
-      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
-      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
-      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
-      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
-      
-      showDecimal(decimal);
-    }
-    
-    function convertDecimal() {
-      var decimalInput = document.getElementById("decimalInput").value;
-      var decimal = parseInt(decimalInput);
-      
-      document.getElementById("binaryResult").textContent = "二进制：" + decimal.toString(2);
-      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
-      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
-      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
-      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
-      
-      showDecimal(decimal);
-    }
-    
-    function convertHexadecimal() {
-      var hexadecimalInput = document.getElementById("hexadecimalInput").value;
-      var decimal = parseInt(hexadecimalInput, 16);
-      
-      document.getElementById("binaryResult").textContent = "二进制：" + decimal.toString(2);
-      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
-      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
-      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
-      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
-      
-      showDecimal(decimal);
-    }
-    
-    function convertBase32() {
-      var base32Input = document.getElementById("base32Input").value;
-      var decimal = parseInt(base32Input, 32);
-      
-      document.getElementById("binaryResult").textContent = "二进制：" + decimal.toString(2);
-      document.getElementById("octalResult").textContent = "八进制：" + decimal.toString(8);
-      document.getElementById("decimalResult").textContent = "十进制：" + decimal;
-      document.getElementById("hexadecimalResult").textContent = "十六进制：" + decimal.toString(16);
-      document.getElementById("base32Result").textContent = "三十二进制：" + decimal.toString(32);
-      
-      showDecimal(decimal);
-    }
-    
-    function showDecimal(decimal) {
-      var binaryString = decimalToBinary(decimal);
-      var sign = binaryString.charAt(0) === '1' ? "负数" : "正数";
-      var magnitude = binaryString.slice(1);
+    function updateTime() {
+      var currentTime = new Date();
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+      var seconds = currentTime.getSeconds();
 
-      var onesComplement = computeOnesComplement(magnitude);
-      var twosComplement = computeTwosComplement(magnitude);
+      // 格式化时间
+      hours = ("0" + hours).slice(-2);
+      minutes = ("0" + minutes).slice(-2);
+      seconds = ("0" + seconds).slice(-2);
 
-      var originalMagnitude = sign === "负数" ? twosComplement : magnitude;
-      var onesComplementMagnitude = sign === "负数" ? computeOnesComplement(twosComplement) : computeOnesComplement(magnitude);
-      var twosComplementMagnitude = sign === "负数" ? twosComplement : computeTwosComplement(magnitude);
+      var timeString = hours + ":" + minutes + ":" + seconds;
 
-      document.getElementById("decimalSign").textContent = "符号位：" + sign;
-      document.getElementById("decimalMagnitude").textContent = "大小：" + magnitude;
-      document.getElementById("decimalOnesComplement").textContent = "原码：" + originalMagnitude;
-      document.getElementById("decimalTwosComplement").textContent = "反码：" + onesComplementMagnitude + "，补码：" + twosComplementMagnitude;
+      // 更新时间
+      document.getElementById("system-time").textContent = timeString;
     }
 
-    function decimalToBinary(decimal) {
-      var binaryString = (decimal >>> 0).toString(2); // 使用 ">>>" 转换为无符号数的二进制字符串
-      while (binaryString.length < 8) {
-        binaryString = "0" + binaryString; // 补齐到8位
+    // 每秒钟更新一次时间
+    setInterval(updateTime, 1000);
+
+    function convert() {
+      var number = parseFloat(document.getElementById('number').value);
+      var fromBase = parseInt(document.getElementById('from').value);
+      var toBase = parseInt(document.getElementById('to').value);
+
+      if (isNaN(number)) {
+        document.getElementById('result-box').innerHTML = '请输入有效数字';
+        return;
       }
-      return binaryString;
+
+      var result = number.toString(toBase);
+
+      var prefix = '';
+      if (toBase === 2) {
+        prefix = '0b';
+      } else if (toBase === 8) {
+        prefix = '0o';
+      } else if (toBase === 16) {
+        prefix = '0x';
+      }
+
+      if (toBase <= 10 && result.indexOf('.') !== -1) {
+        var integerPart = result.split('.')[0];
+        var fractionalPart = result.split('.')[1];
+        result = integerPart + '.' + fractionalPart.padEnd(10, '0');
+      }
+
+      document.getElementById('result-box').innerHTML = `
+        <input type="text" value="${result}" readonly>
+        <button onclick="copyResult()">复制</button>
+      `;
     }
 
-    function computeOnesComplement(magnitude) {
-      var onesComplement = "";
-      
-      for (var i = 0; i < magnitude.length; i++) {
-        onesComplement += magnitude.charAt(i) === '0' ? '1' : '0';
-      }
-      
-      return onesComplement;
-    }
-    
-    function computeTwosComplement(magnitude) {
-      var onesComplement = computeOnesComplement(magnitude);
-      var twosComplement = addBinary(onesComplement, "1");
-      
-      return twosComplement;
-    }
-    
-    function addBinary(a, b) {
-      var sum = "";
-      var carry = 0;
-      var i = a.length - 1;
-      var j = b.length - 1;
-      
-      while (i >= 0 || j >= 0 || carry > 0) {
-        var bitA = i >= 0 ? parseInt(a.charAt(i)) : 0;
-        var bitB = j >= 0 ? parseInt(b.charAt(j)) : 0;
-        var bitSum = bitA + bitB + carry;
-        
-        sum = (bitSum % 2) + sum;
-        carry = Math.floor(bitSum / 2);
-        
-        i--;
-        j--;
-      }
-      
-      return sum;
+    function copyResult() {
+      var resultBox = document.getElementById('result-box');
+      var resultText = resultBox.querySelector('input').value;
+
+      var tempInput = document.createElement('textarea');
+      tempInput.value = resultText;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+
+      alert('结果已复制到剪贴板');
     }
   </script>
-    <a href="./shouye.html" class="home-link">首页</a>
-    <a href="https://www.xm666.eu.org" class="home-link">XM博客</a>
+      <a href="./shouye.html" class="home-link">首页</a>
+      <a href="https://www.xm666.eu.org" class="home-link">XM博客</a>
 </body>
 </html>

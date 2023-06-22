@@ -61,6 +61,14 @@
         .home-link:hover {
             background-color: #0056b3;
         }
+    #system-time {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: black; /* 修改为黑色 */
+            font-weight: bold; /* 加粗 */
+    }
   </style>
 </head>
 <body>
@@ -76,7 +84,7 @@
         <p>再次感谢您使用本网站。</p>
         <p>致谢！</p>
       </div>
-
+      <div id="system-time"></div>
       <button style="text-align: center;" class="confirm-button" onclick="redirectToIndex()">确认跳转</button>
 
   <script>
@@ -86,6 +94,30 @@
         window.location.href = "./shouye.html";
       }
     }
+    function updateTime() {
+      var currentTime = new Date();
+      var year = currentTime.getFullYear();
+      var month = currentTime.getMonth() + 1;
+      var day = currentTime.getDate();
+      var hours = currentTime.getHours();
+      var minutes = currentTime.getMinutes();
+      var seconds = currentTime.getSeconds();
+
+      // 格式化时间
+      month = ("0" + month).slice(-2);
+      day = ("0" + day).slice(-2);
+      hours = ("0" + hours).slice(-2);
+      minutes = ("0" + minutes).slice(-2);
+      seconds = ("0" + seconds).slice(-2);
+
+      var timeString ="现在时间：" + year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+
+      // 更新时间
+      document.getElementById("system-time").textContent = timeString;
+    }
+
+    // 每秒钟更新一次时间
+    setInterval(updateTime, 1000);
   </script>
 </body>
 </html>
