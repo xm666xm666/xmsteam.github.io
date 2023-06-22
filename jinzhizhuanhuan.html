@@ -229,8 +229,13 @@
         return;
       }
 
-      var result = number.toString(toBase);
-
+      var result;
+      if (fromBase === 10) {
+        result = number.toString(toBase);
+      } else {
+        var decimalNumber = parseInt(number, fromBase);
+        result = decimalNumber.toString(toBase);
+      }
       var prefix = '';
       if (toBase === 2) {
         prefix = '0b';
